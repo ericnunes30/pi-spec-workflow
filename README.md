@@ -29,9 +29,28 @@ Automates execution from `tasks.md`:
 - **Automated retries** in isolated worktrees
 - **Progress tracking** in `history.jsonl`
 
+## Requirements
+
+- [pi-coding-agent](https://github.com/badlogic/pi-mono)
+- [pi-subagents](https://www.npmjs.com/package/pi-subagents) — Required for BSD pipeline
+  ```bash
+  pi install npm:pi-subagents
+  ```
+- Git
+
 ## Installation
 
-### Via Git (Recommended)
+### 1. Install pi-subagents (Required)
+
+BSD requires the `pi-subagents` extension to spawn planner/researcher/executor/reviewer agents:
+
+```bash
+pi install npm:pi-subagents
+```
+
+### 2. Install Spec Workflow
+
+#### Via Git (Recommended)
 
 ```bash
 # Install from GitHub
@@ -44,7 +63,7 @@ pi install https://github.com/YOUR_USERNAME/pi-spec-workflow
 /reload
 ```
 
-### Manual Installation
+#### Manual Installation
 
 ```bash
 # Clone the repository
@@ -53,6 +72,12 @@ git clone https://github.com/YOUR_USERNAME/pi-spec-workflow.git ~/.pi/agent/skil
 # Reload pi
 /reload
 ```
+
+### 3. Verify Installation
+
+After `/reload`, confirm:
+- `[Extensions] pi-subagents` appears
+- `[Agents] bsd-planner, bsd-researcher, bsd-executor, bsd-reviewer` appear
 
 ## Quick Start
 
@@ -177,6 +202,10 @@ pi-spec-workflow/
 ## Requirements
 
 - [pi-coding-agent](https://github.com/badlogic/pi-mono)
+- **[pi-subagents](https://www.npmjs.com/package/pi-subagents)** — Required for BSD pipeline (install first!)
+  ```bash
+  pi install npm:pi-subagents
+  ```
 - Git
 
 ## License
