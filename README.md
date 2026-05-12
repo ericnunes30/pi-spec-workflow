@@ -25,9 +25,12 @@ Creates structured planning artifacts:
 ### BSD (Build Spec Development)
 Automates execution from `tasks.md`:
 - **Pipeline**: Planner → Researcher → Executor → Reviewer
+- **BugFix pipeline**: Intake → Diagnose → Fix → Verify
 - **Skeptical review** against acceptance criteria
-- **Automated retries** in isolated worktrees
+- **Automated retries** with isolated branches
 - **Progress tracking** in `history.jsonl`
+- **Mode system**: BSD tools only visible when mode is ON
+- **Orchestrator restrictions**: edit/write/mcp blocked in BSD mode
 
 ## Requirements
 
@@ -54,10 +57,7 @@ pi install npm:pi-subagents
 
 ```bash
 # Install from GitHub
-pi install git:github.com/YOUR_USERNAME/pi-spec-workflow
-
-# Or via HTTPS
-pi install https://github.com/YOUR_USERNAME/pi-spec-workflow
+pi install git:github.com/ericnunes30/pi-spec-workflow
 
 # Reload to activate
 /reload
@@ -67,7 +67,7 @@ pi install https://github.com/YOUR_USERNAME/pi-spec-workflow
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/pi-spec-workflow.git ~/.pi/agent/skills/spec-workflow
+git clone https://github.com/ericnunes30/pi-spec-workflow.git ~/.pi/agent/skills/spec-workflow
 
 # Reload pi
 /reload
@@ -77,6 +77,7 @@ git clone https://github.com/YOUR_USERNAME/pi-spec-workflow.git ~/.pi/agent/skil
 
 After `/reload`, confirm:
 - `[Extensions] pi-subagents` appears
+- `[Extensions] bsd` appears
 - `[Agents] bsd-planner, bsd-researcher, bsd-executor, bsd-reviewer` appear
 
 ## Quick Start
@@ -146,10 +147,15 @@ BSD will:
 
 | Command | Description |
 |---------|-------------|
+| `/bsd-on` | Activate BSD orchestrator mode |
+| `/bsd-off` | Deactivate BSD mode, restore tools |
 | `/bsd-execute <feature>` | Start BSD pipeline |
 | `/bsd-continue` | Resume interrupted execution |
 | `/bsd-status` | Show progress |
 | `/bsd-reset` | Reset execution state |
+| `/bsd-bug [<feature>: <desc>]` | Report bug and start BugFix pipeline |
+| `/bsd-bug-abort` | Cancel active BugFix session |
+| `/bsd-bug-status` | Show active BugFix session status |
 
 ## Spec-Driven Commands
 
@@ -186,6 +192,9 @@ You: /bsd-execute api-crud
 pi-spec-workflow/
 ├── package.json
 ├── README.md
+├── extensions/
+│   └── bsd/
+│       └── index.ts           # BSD extension (mode system + tools)
 ├── skills/
 │   ├── spec-driven/
 │   │   └── SKILL.md           # Planning methodology

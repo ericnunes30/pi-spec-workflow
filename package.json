@@ -19,6 +19,9 @@
     "automation"
   ],
   "pi": {
+    "extensions": [
+      "./extensions/bsd"
+    ],
     "skills": [
       "./skills/spec-driven",
       "./skills/bsd"
