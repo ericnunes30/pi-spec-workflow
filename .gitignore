@@ -1,3 +1,23 @@
 *.git-credentials
 *.log
 node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# BSD runtime artifacts (nunca devem ir pro repo)
+.bsd/
+.specs/
+
+# Backups
+*.bak
+*.bak.ts
+index.ts.bak
