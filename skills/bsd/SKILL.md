@@ -8,10 +8,14 @@ description: Build Spec Development - Automate spec implementation with skeptica
 
 ## Prerequisites
 
-Before using BSD, install **pi-subagents**:
+Before using BSD, install **pi-subagents** and **rpiv-ask-user-question**:
 
 ```bash
-pi install npm:pi-subagents
+# Subagents (required) — registers the Agent tool used by the orchestrator
+pi install npm:@tintinweb/pi-subagents
+
+# Ask-user-question (required) — registers the ask_user_question tool for /bsd-spec flow
+pi install npm:@juicesharp/rpiv-ask-user-question
 ```
 
 Then reload:
@@ -21,6 +25,7 @@ Then reload:
 
 Confirm loaded:
 - `[Extensions] pi-subagents` appears
+- `[Extensions] bsd` appears
 - `[Agents] bsd-planner, bsd-researcher, bsd-frontend-designer, bsd-executor, bsd-reviewer` appear
 - `[Agents] bsd-bug-inspector, bsd-fix-executor` appear (for BugFix mode)
 
